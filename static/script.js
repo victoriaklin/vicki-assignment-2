@@ -186,17 +186,16 @@ document.addEventListener("DOMContentLoaded", function () {
             yaxis: { title: 'Y' },
         });
 
-        // Attach click event for capturing free clicks and converting them to new centroids
-        plotDiv.on('plotly_click', function (eventdata) {
+                // Attach click event for capturing free clicks
+        plotDiv.on('plotly_click', function (data) {
             if (manualMode) {
-                // Get the click coordinates in terms of the plot's data
-                let xCoord = eventdata.points[0].x;
-                let yCoord = eventdata.points[0].y;
+                const plotX = data.points[0].x;
+                const plotY = data.points[0].y;
 
-                console.log(`New Centroid: (${xCoord}, ${yCoord})`);
+                console.log(`Clicked coordinates: (${plotX}, ${plotY})`);
 
                 // Add the new centroid to the centroids array
-                centroids.push([xCoord, yCoord]);
+                centroids.push([plotX, plotY]);
                 console.log("Updated centroids:", centroids);
 
                 // Update the plot with the new centroid
@@ -206,6 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (centroids.length === numClusters) {
                     alert('All centroids selected. You can now step through or run the algorithm.');
                 }
+            } else {
+                console.error("Not in manual mode. Ignoring click.");
             }
         });
     }
