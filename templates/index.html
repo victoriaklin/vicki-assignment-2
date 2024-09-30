@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMeans Clustering</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>KMeans Clustering Visualization</h1>
+        </header>
+
+        <section class="controls">
+            <label for="init-method">Initialization Method:</label>
+            <select id="init-method">
+                <option value="random">Random</option>
+                <option value="farthest">Farthest First</option>
+                <option value="kmeans++">KMeans++</option>
+                <option value="manual">Manual</option>
+            </select>
+
+            <label for="num-clusters">Number of Clusters:</label>
+            <input id="num-clusters" type="number" value="3" min="1" max="10">
+
+            <button id="generate-dataset">Generate New Dataset</button>
+            <button id="step-algorithm">Step Through KMeans</button>
+            <button id="run-to-convergence">Run to Convergence</button>
+            <button id="reset-algorithm">Reset</button>
+        </section>
+
+        <section class="plot-container">
+            <div id="plot" class="plot"></div>
+        </section>
+
+        <!-- Convergence Modal -->
+        <div id="convergence-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <p>KMeans has converged!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
